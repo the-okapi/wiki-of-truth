@@ -7,7 +7,15 @@
 
 	let loading = $state(false);
 
-	let articles: any[] = $state([]);
+	type Article = {
+		id: string;
+		path: string;
+		title: string;
+		image: string;
+		image_alt: string;
+	};
+
+	let articles: Article[] = $state([]);
 
 	onMount(async () => {
 		const response = await fetch('http://localhost:8000/featured');
@@ -36,7 +44,7 @@
 		{#if loading}
 			<p class="font-bold">Loading...</p>
 		{:else}
-			{#each articles as article}
+			{#each articles as article (article.id)}
 				<button
 					class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
 					onclick={() => goto(resolve(`/wiki/${article.path}`))}

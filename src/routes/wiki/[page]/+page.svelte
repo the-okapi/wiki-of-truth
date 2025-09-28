@@ -2,12 +2,16 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { Skeleton } from '$lib/components';
+	import DOMPurify from 'dompurify';
 
 	let loading = $state(true);
-	let pageJson: any = $state({});
+	let pageJson = $state({
+		title: '',
+		value: ''
+	});
 
 	onMount(async () => {
-		const response = await fetch(`https://api.wiki.unlimitedstuffltd.com/wiki/${page.params.page}`);
+		const response = await fetch(`https//localhost:8000/wiki/${page.params.page}`);
 		pageJson = await response.json();
 		loading = false;
 	});
@@ -45,7 +49,7 @@
 			<h1 class="text-3xl font-bold">{pageJson.title}</h1>
 			<div class="w-fit text-left">
 				<p class="space w-[52vw] p-3 font-sans leading-5 whitespace-pre-wrap">
-					{@html pageJson.value}
+					{@html DOMPurify.sanitize(pageJson.value)}
 				</p>
 			</div>
 		</div>

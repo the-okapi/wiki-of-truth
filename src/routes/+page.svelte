@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { version } from '$app/environment';
 
-	let loading = $state(false);
+	let loading = $state(true);
 
 	type Article = {
 		id: string;

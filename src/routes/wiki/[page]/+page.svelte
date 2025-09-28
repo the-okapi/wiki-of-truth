@@ -26,21 +26,26 @@
 </svelte:head>
 
 {#if loading}
-	<main class="p-8">
-		<Skeleton class="m-auto mb-10 h-7 w-80" />
-		<div class="text-left">
-			<Skeleton class="mb-2 inline-block h-5 w-[87vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[93vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[86vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[84vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[87vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[91vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[90vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[86vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[89vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[90vw]" />
-			<Skeleton class="mb-2 inline-block h-5 w-[84vw]" />
-			<Skeleton class="inline-block h-5 w-[87vw]" />
+	<main class="bg-neutral-100">
+		<div class="m-auto w-[56vw] bg-white p-8 text-center">
+			<Skeleton class="m-auto mb-10 h-7 w-80" />
+			<div class="text-left">
+				<Skeleton class="mb-2 inline-block h-5 w-[50vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[52vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[51vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[49vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[50vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[51vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[50vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[49vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[47vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[50vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[49vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[52vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[50vw]" />
+				<Skeleton class="mb-2 inline-block h-5 w-[49vw]" />
+				<Skeleton class="inline-block h-5 w-[52vw]" />
+			</div>
 		</div>
 	</main>
 {:else}

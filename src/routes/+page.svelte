@@ -3,6 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { Button } from '$lib/components';
 	import { onMount } from 'svelte';
+	import { version } from '$app/environment';
 
 	let loading = $state(false);
 
@@ -49,5 +50,15 @@
 				</button>
 			{/each}
 		{/if}
+	</div>
+	<div class="grid grid-cols-2 px-8 pr-14">
+		<div class="text-left">
+			<Button variant="link" class="text-teal-500" onclick={() => goto(resolve('/login'))}
+				>Admin</Button
+			>
+		</div>
+		<div class="my-auto text-right align-middle">
+			<p class="font-mono text-sm">v{version}</p>
+		</div>
 	</div>
 </main>

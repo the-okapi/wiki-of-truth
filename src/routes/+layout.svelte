@@ -40,8 +40,7 @@
 	<Command.Input placeholder="Search for an article" bind:value={searchValue} />
 	<Command.List>
 		<Command.Empty>No articles found.</Command.Empty>
-		<Command.Item onclick={() => goToPage('test')}>Test</Command.Item>
-		<Command.Item onclick={() => goToPage('test2')}>Te</Command.Item>
+		<!--TODO-->
 	</Command.List>
 </Command.Dialog>
 

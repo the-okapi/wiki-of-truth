@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Label, Input, Button, T } from '$lib/components';
+	import { onMount } from 'svelte';
 
 	let username = $state('');
 	let password = $state('');
@@ -16,9 +17,16 @@
 		}
 		loading = true;
 		errorText = 'Loading...';
-		let response = await fetch(
-			`http://localhost:8000/login?username=${username}&password=${password}`
-		);
+		let response = await fetch('http://localhost:8000/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				username,
+				password
+			})
+		});
 		if (!response.ok) {
 			errorText = 'Invalid username or password';
 			loading = false;
@@ -26,10 +34,16 @@
 		}
 		let token = await response.text();
 		localStorage.setItem('admin_token', token);
+		localStorage.setItem('admin_username', username);
 		errorText = '';
 		loading = false;
 		goto(resolve('/admin'));
 	}
+	onMount(() => {
+		if (localStorage.getItem('admin_token') && localStorage.getItem('admin_username')) {
+			goto(resolve('/admin'));
+		}
+	});
 </script>
 
 <svelte:head>
@@ -43,7 +57,13 @@
 		<form {onsubmit} class="px-9 py-5 text-center">
 			<div class="inline-block">
 				<Label for="username" class="mb-1">Username:</Label>
-				<Input bind:value={username} class="mb-3 w-80" id="username" disabled={loading} />
+				<Input
+					bind:value={username}
+					class="mb-3 w-80"
+					id="username"
+					disabled={loading}
+					autocomplete="username"
+				/>
 				<Label for="password" class="mb-1">Password:</Label>
 				<Input
 					bind:value={password}

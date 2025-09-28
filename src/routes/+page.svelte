@@ -10,7 +10,7 @@
 	let articles: any[] = $state([]);
 
 	onMount(async () => {
-		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/featured');
+		const response = await fetch('http://localhost:8000/featured');
 		articles = await response.json();
 		loading = false;
 	});

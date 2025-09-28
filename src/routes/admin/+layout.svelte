@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		if (!localStorage.getItem('admin_token')) {
+		if (!localStorage.getItem('admin_token') || !localStorage.getItem('admin_username')) {
 			goto(resolve('/login'));
 		}
 	});

@@ -6,41 +6,29 @@
 
 	let loading = $state(false);
 
-	let articles: any[] = $state([
-		{
-			path: 'test',
-			title: 'This is a test!',
-			image: 'https://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg',
-			image_alt: 'Wikipedia Logo'
-		},
-		{
-			path: 'test2',
-			title: 'This is another test',
-			image:
-				'https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png',
-			image_alt: 'Phone'
-		}
-	]);
-	/*
+	let articles: any[] = $state([]);
+
 	onMount(async () => {
 		const response = await fetch('http://localhost:8000/featured');
-        articles = await response.json();
-        loading = false;
-	});*/
+		articles = await response.json();
+		loading = false;
+	});
 </script>
 
 <svelte:head>
 	<title>Wiki of Truth</title>
 </svelte:head>
 
-<main class="mt-8">
+<main class="h-content-height mt-8">
 	<h1 class="mb-2 text-3xl font-bold">Welcome to the Wiki of Truth!</h1>
 	<p>
-		To start exploring, you can use the search bar in the top right, or you can read some of the
-		articles below. <Button
+		To start exploring, you can click the button in the top right or hit <kbd
+			class="rounded-md border border-gray-200 bg-gray-100 px-1 py-0.5 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100"
+			>Ctrl</kbd
+		>. Alternatively, you can read some of the articles below. <Button
 			variant="link"
 			class="p-0 text-teal-500"
-			onclick={() => goto(resolve('/about'))}>About</Button
+			onclick={() => goto(resolve('/about'))}>About the Wiki of Truth</Button
 		>
 	</p>
 	<div class="flex h-[60vh] items-center justify-center">

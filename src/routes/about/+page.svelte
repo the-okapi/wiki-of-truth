@@ -2,7 +2,7 @@
 	<title>About - Wiki of Truth</title>
 </svelte:head>
 
-<main class="mt-8">
+<main class="h-content-height mt-8">
 	<h1 class="mb-2 text-3xl font-bold">About</h1>
 
 	<p class="m-auto mb-7 w-[75vw] text-center">

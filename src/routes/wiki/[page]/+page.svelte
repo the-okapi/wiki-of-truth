@@ -7,7 +7,7 @@
 	let pageJson: any = $state({});
 
 	onMount(async () => {
-		const response = await fetch(`http://localhost:8000/wiki/${page.params.page}`);
+		const response = await fetch(`https://wiki.unlimitedstuffltd.com/wiki/${page.params.page}`);
 		pageJson = await response.json();
 		loading = false;
 	});

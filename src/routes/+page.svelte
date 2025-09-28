@@ -18,7 +18,7 @@
 	let articles: Article[] = $state([]);
 
 	onMount(async () => {
-		const response = await fetch('http://localhost:8000/featured');
+		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/featured');
 		articles = await response.json();
 		loading = false;
 	});
@@ -44,7 +44,7 @@
 		{#if loading}
 			<p class="font-bold">Loading...</p>
 		{:else}
-			{#each articles as article (article.id)}
+			{#each articles as article}
 				<button
 					class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
 					onclick={() => goto(resolve(`/wiki/${article.path}`))}

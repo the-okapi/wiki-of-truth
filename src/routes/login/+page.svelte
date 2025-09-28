@@ -17,7 +17,7 @@
 		}
 		loading = true;
 		errorText = 'Loading...';
-		let response = await fetch('http://localhost:8000/login', {
+		let response = await fetch('https://api.wiki.unlimitedstuffltd.com/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

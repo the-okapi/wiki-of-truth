@@ -11,7 +11,7 @@
 	});
 
 	onMount(async () => {
-		const response = await fetch(`https//localhost:8000/wiki/${page.params.page}`);
+		const response = await fetch(`https://api.wiki.unlimitedstuffltd.com/wiki/${page.params.page}`);
 		pageJson = await response.json();
 		loading = false;
 	});

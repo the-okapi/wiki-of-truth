@@ -1,1 +1,11 @@
-// place files you want to import through the `$lib` alias in this folder.
+import { writable, type Writable } from 'svelte/store';
+
+type Article = {
+	featured: boolean;
+	path: string;
+	title: string;
+	image: string;
+	image_alt: string;
+};
+
+export const articles: Writable<Article[]> = writable([]);

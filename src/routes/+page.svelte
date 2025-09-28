@@ -4,11 +4,12 @@
 	import { Button } from '$lib/components';
 	import { onMount } from 'svelte';
 	import { version } from '$app/environment';
+	import { articles } from '$lib/index';
 
-	let loading = $state(true);
+	//let loading = $state(true);
 
-	type Article = {
-		id: string;
+	/*type Article = {
+        featured: boolean;
 		path: string;
 		title: string;
 		image: string;
@@ -16,12 +17,14 @@
 	};
 
 	let articles: Article[] = $state([]);
+    let featuredArticles: Article[] = $state([]);
 
 	onMount(async () => {
-		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/featured');
+		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/get-all');
 		articles = await response.json();
+        featuredArticles = articles.filter(a => a.featured);
 		loading = false;
-	});
+	});*/
 </script>
 
 <svelte:head>
@@ -41,23 +44,19 @@
 		>
 	</p>
 	<div class="flex h-[60vh] items-center justify-center">
-		{#if loading}
-			<p class="font-bold">Loading...</p>
-		{:else}
-			{#each articles as article}
-				<button
-					class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
-					onclick={() => goto(resolve(`/wiki/${article.path}`))}
-				>
-					<img
-						src={article.image}
-						alt={article.image_alt}
-						class="m-auto mb-3 max-h-[13vw] max-w-[10vw] rounded"
-					/>
-					{article.title}
-				</button>
-			{/each}
-		{/if}
+		{#each $articles as article}
+			<button
+				class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
+				onclick={() => goto(resolve(`/wiki/${article.path}`))}
+			>
+				<img
+					src={article.image}
+					alt={article.image_alt}
+					class="m-auto mb-3 max-h-[13vw] max-w-[10vw] rounded"
+				/>
+				{article.title}
+			</button>
+		{/each}
 	</div>
 	<div class="grid grid-cols-2 px-8 pr-14">
 		<div class="text-left">

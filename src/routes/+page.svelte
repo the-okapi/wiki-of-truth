@@ -9,7 +9,7 @@
 	let articles: any[] = $state([]);
 
 	onMount(async () => {
-		const response = await fetch('https://wiki.unlimitedstuffltd.com/featured');
+		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/featured');
 		articles = await response.json();
 		loading = false;
 	});

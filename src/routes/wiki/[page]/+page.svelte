@@ -38,8 +38,14 @@
 		<Skeleton class="inline-block h-5 w-[87vw]" />
 	</div>
 {:else}
-	<h1 class="text-3xl font-bold">{pageJson.title}</h1>
-	<div class="text-left">
-		<p>{pageJson.value}</p>
-	</div>
+	<main class="bg-neutral-100">
+		<div class="m-auto w-[56vw] bg-white p-8 text-center">
+			<h1 class="text-3xl font-bold">{pageJson.title}</h1>
+			<div class="w-fit text-left">
+				<p class="space w-[52vw] p-3 font-sans leading-5 whitespace-pre-wrap">
+					{@html pageJson.value}
+				</p>
+			</div>
+		</div>
+	</main>
 {/if}

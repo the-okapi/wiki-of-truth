@@ -24,7 +24,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<nav class="grid h-[15vh] grid-cols-3 border-b-2 pt-5 pr-5 pb-4 pl-5">
+<nav class="z-10 grid h-[15vh] w-[100vw] grid-cols-3 border-b-2 bg-white pt-5 pr-5 pb-4 pl-5">
 	<WikiOfTruth />
 	<div class="m-auto inline h-fit text-center align-middle">
 		<p class="align-baseline">{date}</p>
@@ -42,6 +42,13 @@
 	</div>
 </nav>
 
-<div class="p-8 text-center">
+<div class="text-center">
 	{@render children?.()}
 </div>
+
+<style>
+	nav {
+		top: 0;
+		left: 0;
+	}
+</style>

@@ -2,29 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Button } from '$lib/components';
-	import { onMount } from 'svelte';
-	import { version } from '$app/environment';
 	import { articles } from '$lib/index';
-
-	//let loading = $state(true);
-
-	/*type Article = {
-        featured: boolean;
-		path: string;
-		title: string;
-		image: string;
-		image_alt: string;
-	};
-
-	let articles: Article[] = $state([]);
-    let featuredArticles: Article[] = $state([]);
-
-	onMount(async () => {
-		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/get-all');
-		articles = await response.json();
-        featuredArticles = articles.filter(a => a.featured);
-		loading = false;
-	});*/
 </script>
 
 <svelte:head>
@@ -44,6 +22,9 @@
 		>
 	</p>
 	<div class="flex h-[60vh] items-center justify-center">
+		{#if $articles.length === 0}
+			<p>Loading...</p>
+		{/if}
 		{#each $articles as article}
 			<button
 				class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
@@ -63,9 +44,6 @@
 			<Button variant="link" class="text-teal-500" onclick={() => goto(resolve('/login'))}
 				>Admin</Button
 			>
-		</div>
-		<div class="my-auto text-right align-middle">
-			<p class="font-mono text-sm">v{version}</p>
 		</div>
 	</div>
 </main>

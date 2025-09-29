@@ -3,6 +3,8 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { WikiOfTruth, Button, Command, Input } from '$lib/components';
 	import { resolve } from '$app/paths';
+	import { articles } from '$lib';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 
@@ -22,25 +24,32 @@
 		open = true;
 	}
 
-	function onkeypress(event: KeyboardEvent) {
+	function onkeydown(event: KeyboardEvent) {
+		console.log(event);
 		if (event.key === 'Control') {
-			// todo
 			event.preventDefault();
 			open = !open;
 		}
 	}
+
+	onMount(async () => {
+		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/get-all');
+		articles.set(await response.json());
+	});
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<svelte:document {onkeypress} />
+<svelte:document {onkeydown} />
 <Command.Dialog bind:open>
 	<Command.Input placeholder="Search for an article" bind:value={searchValue} />
 	<Command.List>
 		<Command.Empty>No articles found.</Command.Empty>
-		<!--TODO-->
+		{#each $articles as article}
+			<Command.Item onclick={() => goToPage(article.path)}>{article.title}</Command.Item>
+		{/each}
 	</Command.List>
 </Command.Dialog>
 

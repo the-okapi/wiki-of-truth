@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Label, Input, Button, T } from '$lib/components';
+	import { SERVER_URL } from '$lib/config';
 	import { onMount } from 'svelte';
 
 	let username = $state('');
@@ -17,7 +18,7 @@
 		}
 		loading = true;
 		errorText = 'Loading...';
-		let response = await fetch('https://api.wiki.unlimitedstuffltd.com/login', {
+		let response = await fetch(`${SERVER_URL}/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

@@ -5,6 +5,7 @@
 	import { resolve } from '$app/paths';
 	import { articles } from '$lib';
 	import { onMount } from 'svelte';
+	import { SERVER_URL } from '$lib/config';
 
 	let { children } = $props();
 
@@ -33,7 +34,7 @@
 	}
 
 	onMount(async () => {
-		const response = await fetch('https://api.wiki.unlimitedstuffltd.com/get-all');
+		const response = await fetch(`${SERVER_URL}/get-all`);
 		articles.set(await response.json());
 	});
 </script>

@@ -4,6 +4,7 @@
 	import { Label, Input, Button, T } from '$lib/components';
 	import { SERVER_URL } from '$lib/config';
 	import { onMount } from 'svelte';
+	import { version } from '$app/environment';
 
 	let username = $state('');
 	let password = $state('');
@@ -28,8 +29,12 @@
 				password
 			})
 		});
-		if (!response.ok) {
+		if (response.status === 400) {
 			errorText = 'Invalid username or password';
+			loading = false;
+			return;
+		} else if (response.status === 500) {
+			errorText = 'There was a problem on our end.';
 			loading = false;
 			return;
 		}
@@ -53,7 +58,9 @@
 
 <div class="flex h-[85vh] w-screen items-center justify-center bg-neutral-100">
 	<div class=" rounded-2xl border-2 bg-white">
-		<h2 class="mt-5 mb-2 ml-5 text-left text-xl font-bold">Admin Login</h2>
+		<h2 class="mt-5 mb-2 ml-5 text-left text-xl font-bold">
+			Admin Login <span class="font-md font-mono font-normal">v{version}</span>
+		</h2>
 		<hr />
 		<form {onsubmit} class="px-9 py-5 text-center">
 			<div class="inline-block">
@@ -71,6 +78,7 @@
 					class="mb-1 w-80"
 					type="password"
 					id="password"
+					autocomplete="current-password"
 					disabled={loading}
 				/>
 				<p class="mb-5"><T />{errorText}<T /></p>

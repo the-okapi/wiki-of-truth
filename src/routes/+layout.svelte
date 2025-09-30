@@ -45,7 +45,7 @@
 
 <svelte:document {onkeydown} />
 <Command.Dialog bind:open>
-	<Command.Input placeholder="Search for an article" bind:value={searchValue} />
+	<Command.Input placeholder="Search the Unknown Universe" bind:value={searchValue} />
 	<Command.List>
 		<Command.Empty>No articles found.</Command.Empty>
 		{#each $articles as article}
@@ -60,7 +60,7 @@
 		<p class="align-baseline">{date}</p>
 	</div>
 	<form onsubmit={openCommandDialog} class="m-auto flex h-fit w-[100%] text-right align-middle">
-		<Input placeholder="Search the unknown universe" bind:value={searchValue} class="mr-1 w-100" />
+		<Input placeholder="Search the Unknown Universe" bind:value={searchValue} class="mr-1 w-100" />
 		<Button type="submit">Go</Button>
 	</form>
 </nav>

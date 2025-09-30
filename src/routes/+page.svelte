@@ -3,6 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { Button } from '$lib/components';
 	import { articles } from '$lib/index';
+	import Page from './about/+page.svelte';
 </script>
 
 <svelte:head>
@@ -12,7 +13,7 @@
 <main class="h-content-height mt-8">
 	<h1 class="mb-2 text-3xl font-bold">Welcome to the Wiki of Truth!</h1>
 	<p>
-		To start exploring, you can click the button in the top right or hit <kbd
+		To start exploring, you can use the search bar in the top right or hit <kbd
 			class="rounded-md border border-gray-200 bg-gray-100 px-1 py-0.5 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100"
 			>Ctrl</kbd
 		>. Alternatively, you can read some of the articles below. <Button

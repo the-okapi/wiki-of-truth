@@ -12,7 +12,7 @@
 	});
 
 	onMount(async () => {
-		const response = await fetch(`${SERVER_URL}/wiki/${page.params.page}`);
+		const response = await fetch(`${SERVER_URL}/wiki/${page.params.article}`);
 		pageJson = await response.json();
 		loading = false;
 	});

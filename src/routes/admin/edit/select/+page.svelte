@@ -1,1 +1,3 @@
-<h1>Select an article to edit</h1>
+<svelte:head>
+	<title>Select an Article to Edit</title>
+</svelte:head>

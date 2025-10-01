@@ -60,7 +60,7 @@
 		<p class="align-baseline">{date}</p>
 	</div>
 	<form onsubmit={openCommandDialog} class="m-auto flex h-fit w-[100%] text-right align-middle">
-		<Input placeholder="Search the Unknown Universe" bind:value={searchValue} class="mr-1 w-100" />
+		<Input placeholder="Search the Unknown Universe" bind:value={searchValue} class="mr-1" />
 		<Button type="submit">Go</Button>
 	</form>
 </nav>

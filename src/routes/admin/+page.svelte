@@ -7,6 +7,8 @@
 
 	let text = $state('');
 
+	let logOutLoading = $state(false);
+
 	function createArticle() {
 		goto(resolve('/admin/create'));
 	}
@@ -16,6 +18,8 @@
 	}
 
 	async function logOut() {
+		let logOutLoading = true;
+		text = 'Loading...';
 		let token = localStorage.getItem('admin_token');
 		let username = localStorage.getItem('admin_username');
 		localStorage.removeItem('admin_token');
@@ -46,7 +50,7 @@
 		<div class="m-8 mt-16">
 			<Button onclick={createArticle}>Create Article</Button>
 			<Button onclick={editArticle}>Edit Article</Button><br /><br />
-			<Button onclick={logOut}>Log Out</Button>
+			<Button onclick={logOut} disabled={logOutLoading}>Log Out</Button>
 			<p>{text}</p>
 		</div>
 	</div>

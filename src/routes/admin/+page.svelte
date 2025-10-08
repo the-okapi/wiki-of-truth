@@ -2,8 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components';
 	import { resolve } from '$app/paths';
-	import { SERVER_URL } from '$lib/config';
 	import { version } from '$app/environment';
+	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
 
 	let text = $state('');
 
@@ -18,7 +18,7 @@
 	}
 
 	async function logOut() {
-		let logOutLoading = true;
+		logOutLoading = true;
 		text = 'Loading...';
 		let token = localStorage.getItem('admin_token');
 		let username = localStorage.getItem('admin_username');
@@ -48,8 +48,8 @@
 			Admin Dashboard <span class="font-mono text-xl font-normal">{version}</span>
 		</h1>
 		<div class="m-8 mt-16">
-			<Button onclick={createArticle}>Create Article</Button>
-			<Button onclick={editArticle}>Edit Article</Button><br /><br />
+			<Button onclick={createArticle} disabled={logOutLoading}>Create Article</Button>
+			<Button onclick={editArticle} disabled={logOutLoading}>Edit Article</Button><br /><br />
 			<Button onclick={logOut} disabled={logOutLoading}>Log Out</Button>
 			<p>{text}</p>
 		</div>

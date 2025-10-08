@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { Skeleton } from '$lib/components';
 	import DOMPurify from 'dompurify';
-	import { SERVER_URL } from '$lib/config';
+	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
 
 	let loading = $state(true);
 	let pageJson = $state({

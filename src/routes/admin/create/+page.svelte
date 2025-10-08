@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Label, Button, Input } from '$lib/components';
-	import { SERVER_URL } from '$lib/config';
+	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
 
 	const validPathChars = 'abcdefghijklmnopqrstuvwxyz0123456789-';
 
@@ -11,7 +11,9 @@
 	let image = $state('');
 	let image_alt = $state('');
 
-	let text = $state('');
+	let text = $state(
+		"Image preview must show up in box. If it doesn't, article won't work. Path can only contain lowercase letters and numbers and hyphens. Spaces are not allowed."
+	);
 
 	let loading = $state(false);
 
@@ -22,6 +24,8 @@
 			if (!validPathChars.includes(path[i])) {
 				text =
 					'Path can only include lowercase letters (abcdef...), numbers (1,2,3....) and hyphens (-)';
+				loading = false;
+				return;
 			}
 		}
 		let response = await fetch(`${SERVER_URL}/create`, {

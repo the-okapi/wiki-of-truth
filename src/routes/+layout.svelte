@@ -5,7 +5,7 @@
 	import { resolve } from '$app/paths';
 	import { articles } from '$lib';
 	import { onMount } from 'svelte';
-	import { SERVER_URL } from '$lib/config';
+	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
 
 	let { children } = $props();
 
@@ -48,7 +48,7 @@
 	<Command.Input placeholder="Search the Unknown Universe" bind:value={searchValue} />
 	<Command.List>
 		<Command.Empty>No articles found.</Command.Empty>
-		{#each $articles as article}
+		{#each $articles as article (article.path)}
 			<Command.Item onclick={() => goToPage(article.path)}>{article.title}</Command.Item>
 		{/each}
 	</Command.List>

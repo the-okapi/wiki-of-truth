@@ -3,7 +3,6 @@
 	import { resolve } from '$app/paths';
 	import { Button } from '$lib/components';
 	import { articles } from '$lib/index';
-	import Page from './about/+page.svelte';
 </script>
 
 <svelte:head>
@@ -26,7 +25,7 @@
 		{#if $articles.length === 0}
 			<p>Loading...</p>
 		{/if}
-		{#each $articles as article}
+		{#each $articles as article (article.path)}
 			<button
 				class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
 				onclick={() => goto(resolve(`/wiki/${article.path}`))}

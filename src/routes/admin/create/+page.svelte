@@ -12,7 +12,7 @@
 	let image_alt = $state('');
 
 	let text = $state(
-		"Image preview must show up in box. If it doesn't, article won't work. Path can only contain lowercase letters and numbers and hyphens. Spaces are not allowed. Path and image cannot be changed later. Everthing else can. (title and contents)"
+		"Image preview must show up in box. If it doesn't, article won't work. Path can only contain lowercase letters and numbers and hyphens. Spaces are not allowed. Path and image cannot be changed later. Everthing else can (title and contents). No including names of real people or places near where you live."
 	);
 
 	let loading = $state(false);

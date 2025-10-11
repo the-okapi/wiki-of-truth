@@ -2,8 +2,14 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { Skeleton } from '$lib/components';
-	import DOMPurify from 'dompurify';
 	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
+	import Markdown from 'svelte-exmarkdown';
+	import remarkBreaks from 'remark-breaks';
+	import type { Plugin } from 'svelte-exmarkdown';
+	const breaksPlugin = (options = {}): Plugin => ({
+		remarkPlugin: [remarkBreaks, options]
+	});
+	const plugins = [breaksPlugin()];
 
 	let loading = $state(true);
 	let pageJson = $state({
@@ -53,10 +59,8 @@
 	<main class="bg-neutral-100">
 		<div class="m-auto w-[56vw] bg-white p-8 text-center">
 			<h1 class="text-3xl font-bold">{pageJson.title}</h1>
-			<div class="w-fit text-left">
-				<p class="space w-[52vw] p-3 font-sans leading-5 whitespace-pre-wrap">
-					{@html DOMPurify.sanitize(pageJson.value)}
-				</p>
+			<div class="mt-3 w-fit text-left">
+				<Markdown md={pageJson.value} {plugins} />
 			</div>
 		</div>
 	</main>

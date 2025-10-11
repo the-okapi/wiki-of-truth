@@ -2,7 +2,9 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { SERVER_URL } from '$lib/index';
-	import { Markdown, Button, Spinner, Dialog, Label, Input } from '$lib/components';
+	import { Markdown, Button, Spinner, Dialog, Label, Input, AlertDialog } from '$lib/components';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	let loading = $state(true);
 	let pageJson = $state({
@@ -12,6 +14,7 @@
 
 	let renameDialogOpen = $state(false);
 	let savedDialogOpen = $state(false);
+	let deleteDialogOpen = $state(false);
 
 	let newTitle = $state('');
 
@@ -51,6 +54,29 @@
 		}
 	}
 
+	async function deleteArticle() {
+		loading = true;
+		deleteDialogOpen = false;
+		const response = await fetch(`${SERVER_URL}/delete`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				owner_token: localStorage.getItem('admin_token'),
+				owner_username: localStorage.getItem('admin_username'),
+				path: page.params.article,
+				title: pageJson.title
+			})
+		});
+		if (response.ok) {
+			goto(resolve('/admin'));
+		} else {
+			text = 'Error ' + response.status;
+			loading = false;
+		}
+	}
+
 	onMount(async () => {
 		const response = await fetch(`${SERVER_URL}/wiki/${page.params.article}`);
 		pageJson = await response.json();
@@ -68,6 +94,21 @@
 		<title>Edit {pageJson.title} - Wiki of Truth</title>
 	{/if}
 </svelte:head>
+
+<AlertDialog.Root bind:open={deleteDialogOpen}>
+	<AlertDialog.Content>
+		<AlertDialog.Header>
+			<AlertDialog.Title>Delete This Article</AlertDialog.Title>
+			<AlertDialog.Description
+				>Are you sure you want to delete this article? This action cannot be undone.</AlertDialog.Description
+			>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<Button onclick={deleteArticle} variant="destructive">Delete</Button>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
 
 <Dialog.Root bind:open={savedDialogOpen}>
 	<Dialog.Content>
@@ -118,6 +159,7 @@
 			<div class="m-auto text-left">Source</div>
 			<div class="m-auto flex text-center">
 				<p class="m-auto mr-1 text-lg font-bold text-red-500">{text}</p>
+				<Button onclick={() => (deleteDialogOpen = true)} class="mr-1">Delete</Button>
 				<Button onclick={save}>Save</Button>
 				<p class="mx-7 my-auto text-2xl font-bold">{pageJson.title}</p>
 				<Button onclick={changeTitle}>Change Title</Button>

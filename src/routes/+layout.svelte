@@ -5,7 +5,7 @@
 	import { resolve } from '$app/paths';
 	import { articles } from '$lib';
 	import { onMount } from 'svelte';
-	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
+	import { SERVER_URL } from '$lib/index';
 
 	let { children } = $props();
 

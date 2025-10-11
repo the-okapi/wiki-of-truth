@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { Button } from '$lib/components';
+	import { Button, Spinner } from '$lib/components';
 	import { articles } from '$lib/index';
 </script>
 
@@ -23,7 +23,7 @@
 	</p>
 	<div class="flex h-[60vh] items-center justify-center">
 		{#if $articles.length === 0}
-			<p>Loading...</p>
+			<p class="flex"><Spinner class="m-auto mr-2" /> Loading...</p>
 		{/if}
 		{#each $articles as article (article.path)}
 			<button

@@ -1,15 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import { Skeleton } from '$lib/components';
-	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
-	import Markdown from 'svelte-exmarkdown';
-	import remarkBreaks from 'remark-breaks';
-	import type { Plugin } from 'svelte-exmarkdown';
-	const breaksPlugin = (options = {}): Plugin => ({
-		remarkPlugin: [remarkBreaks, options]
-	});
-	const plugins = [breaksPlugin()];
+	import { Skeleton, Markdown } from '$lib/components';
+	import { SERVER_URL } from '$lib/index';
 
 	let loading = $state(true);
 	let pageJson = $state({
@@ -60,7 +53,7 @@
 		<div class="m-auto w-[56vw] bg-white p-8 text-center">
 			<h1 class="text-3xl font-bold">{pageJson.title}</h1>
 			<div class="mt-3 w-fit text-left">
-				<Markdown md={pageJson.value} {plugins} />
+				<Markdown md={pageJson.value} />
 			</div>
 		</div>
 	</main>

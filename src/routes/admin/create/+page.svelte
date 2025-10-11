@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Label, Button, Input } from '$lib/components';
-	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
+	import { SERVER_URL } from '$lib/index';
 
 	const validPathChars = 'abcdefghijklmnopqrstuvwxyz0123456789-';
 
@@ -12,7 +12,7 @@
 	let image_alt = $state('');
 
 	let text = $state(
-		"Image preview must show up in box. If it doesn't, article won't work. Path can only contain lowercase letters and numbers and hyphens. Spaces are not allowed."
+		"Image preview must show up in box. If it doesn't, article won't work. Path can only contain lowercase letters and numbers and hyphens. Spaces are not allowed. Path and image cannot be changed later. Everthing else can. (title and contents)"
 	);
 
 	let loading = $state(false);
@@ -65,9 +65,9 @@
 	<title>Create an Article</title>
 </svelte:head>
 
-<div class="h-[85vh] w-screen bg-white p-6">
+<div class="h-[85vh] w-screen bg-white p-3">
 	<Button variant="link" class="text-teal-500" onclick={() => goto(resolve('/admin'))}>Back</Button>
-	<h1 class="mb-10 text-3xl font-bold">Create an Article</h1>
+	<h1 class="mb-5 text-3xl font-bold">Create an Article</h1>
 	<div class="mb-5 grid grid-cols-2">
 		<div class="flex justify-end">
 			<form {onsubmit} class="mr-10 w-fit text-center">
@@ -117,5 +117,5 @@
 			alt={image_alt}
 		/>
 	</div>
-	<p>{text}</p>
+	<p class="m-auto w-300">{text}</p>
 </div>

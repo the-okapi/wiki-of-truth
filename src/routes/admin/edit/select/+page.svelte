@@ -34,7 +34,9 @@
 	<Command.List>
 		<Command.Empty>No articles found.</Command.Empty>
 		{#each $articles as article (article.path)}
-			<Command.Item onclick={() => goToPage(article.path)}>{article.title} - Edit</Command.Item>
+			<Command.Item onclick={() => goToPage(article.path)}
+				><span>Edit <strong>{article.title}</strong></span></Command.Item
+			>
 		{/each}
 	</Command.List>
 </Command.Dialog>
@@ -51,4 +53,6 @@
 			</div>
 		</div>
 	</form>
+
+	<Button variant="link" onclick={() => goto(resolve('/admin'))} class="text-teal-500">Back</Button>
 </div>

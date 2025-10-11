@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { Label, Input, Button, T } from '$lib/components';
-	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
+	import { SERVER_URL } from '$lib/index';
 	import { onMount } from 'svelte';
 	import { version } from '$app/environment';
 

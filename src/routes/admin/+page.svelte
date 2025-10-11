@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components';
 	import { resolve } from '$app/paths';
 	import { version } from '$app/environment';
-	import { PUBLIC_SERVER_URL as SERVER_URL } from '$env/static/public';
+	import { SERVER_URL } from '$lib/index';
 
 	let text = $state('');
 

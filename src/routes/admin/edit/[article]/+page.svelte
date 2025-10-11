@@ -17,11 +17,6 @@
 
 	let text = $state('');
 
-	function onbeforeunload() {
-		console.log('Hello');
-		return 'Changes will not be saved if you leave the page, are you sure?';
-	}
-
 	function changeTitle() {
 		renameDialogOpen = true;
 	}
@@ -29,7 +24,6 @@
 	function rename(event: Event) {
 		event.preventDefault();
 		pageJson.title = newTitle;
-		newTitle = '';
 		renameDialogOpen = false;
 	}
 
@@ -60,6 +54,7 @@
 	onMount(async () => {
 		const response = await fetch(`${SERVER_URL}/wiki/${page.params.article}`);
 		pageJson = await response.json();
+		newTitle = pageJson.title;
 		loading = false;
 	});
 </script>

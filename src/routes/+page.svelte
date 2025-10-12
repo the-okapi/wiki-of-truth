@@ -25,7 +25,7 @@
 		{#if $articles.length === 0}
 			<p class="flex"><Spinner class="m-auto mr-2" /> Loading...</p>
 		{/if}
-		{#each $articles as article (article.path)}
+		{#each $articles.filter((article) => article.featured) as article (article.path)}
 			<button
 				class="mx-2 h-fit w-[12vw] cursor-pointer rounded-md border-2 p-[1vw] hover:shadow"
 				onclick={() => goto(resolve(`/wiki/${article.path}`))}

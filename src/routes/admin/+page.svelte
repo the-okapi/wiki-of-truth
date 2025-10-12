@@ -34,7 +34,7 @@
 				token
 			})
 		});
-		goto(resolve('/'));
+		window.location.assign(resolve('/'));
 	}
 </script>
 

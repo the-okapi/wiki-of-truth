@@ -46,10 +46,11 @@
 			})
 		});
 		if (response.ok) {
+			text = '';
 			savedDialogOpen = true;
 			loading = false;
 		} else {
-			text = 'Error ' + response.status;
+			text = 'Error ' + response.status / 100;
 			loading = false;
 		}
 	}
@@ -70,9 +71,10 @@
 			})
 		});
 		if (response.ok) {
+			text = '';
 			goto(resolve('/admin'));
 		} else {
-			text = 'Error ' + response.status;
+			text = 'Error ' + response.status / 100;
 			loading = false;
 		}
 	}
@@ -155,14 +157,15 @@
 	</div>
 {:else}
 	<div>
-		<div class="grid h-[10vh] grid-cols-3 border-b-2 px-5 text-xl">
+		<div class="grid h-[10vh] grid-cols-131 border-b-2 px-5 text-xl">
 			<div class="m-auto text-left">Source</div>
 			<div class="m-auto flex text-center">
 				<p class="m-auto mr-1 text-lg font-bold text-red-500">{text}</p>
 				<Button onclick={() => (deleteDialogOpen = true)} class="mr-1">Delete</Button>
 				<Button onclick={save}>Save</Button>
 				<p class="mx-7 my-auto text-2xl font-bold">{pageJson.title}</p>
-				<Button onclick={changeTitle}>Change Title</Button>
+				<Button onclick={changeTitle} class="mr-1">Rename</Button>
+				<Button onclick={() => window.location.assign(`/wiki/${page.params.article}`)}>Page</Button>
 			</div>
 			<div class="m-auto text-right">What the viewer sees</div>
 		</div>
@@ -175,3 +178,9 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	.grid-cols-131 {
+		grid-template-columns: 1fr 3fr 1fr;
+	}
+</style>

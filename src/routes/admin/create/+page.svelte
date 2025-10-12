@@ -57,7 +57,7 @@
 			return;
 		}
 		loading = false;
-		goto(resolve(`/admin/edit/${path}`));
+		window.location.assign(resolve(`/admin/edit/${path}`));
 	}
 </script>
 

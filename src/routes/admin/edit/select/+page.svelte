@@ -16,7 +16,7 @@
 
 	function goToPage(where: string) {
 		open = false;
-		goto(resolve(`/admin/edit/${where}`));
+		window.location.assign(resolve(`/admin/edit/${where}`));
 	}
 
 	function openDialog(event: Event) {

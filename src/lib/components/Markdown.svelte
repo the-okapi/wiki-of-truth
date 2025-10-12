@@ -10,4 +10,6 @@
 	let { md } = $props();
 </script>
 
-<Markdown {md} {plugins} />
+<div class="md-container">
+	<Markdown {md} {plugins} />
+</div>

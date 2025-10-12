@@ -44,6 +44,7 @@
 </svelte:head>
 
 <svelte:document {onkeydown} />
+
 <Command.Dialog bind:open>
 	<Command.Input placeholder="Search the Unknown Universe" bind:value={searchValue} />
 	<Command.List>
@@ -54,7 +55,7 @@
 	</Command.List>
 </Command.Dialog>
 
-<nav class="z-10 grid h-[15vh] w-[100vw] grid-cols-3 border-b-2 bg-white pt-5 pr-5 pb-4 pl-5">
+<nav class="z-10 grid h-[15vh] w-[100vw] grid-cols-3 border-b-2 bg-background pt-5 pr-5 pb-4 pl-5">
 	<WikiOfTruth />
 	<div class="m-auto inline h-fit text-center align-middle">
 		<p class="align-baseline">{date}</p>

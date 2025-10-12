@@ -10,5 +10,4 @@ type Article = {
 
 export const articles: Writable<Article[]> = writable([]);
 
-//export const SERVER_URL = 'https://wiki-of-truth.leapcell.app';
-export const SERVER_URL = 'http://localhost:3000';
+export const SERVER_URL = 'https://wiki-of-truth.leapcell.app';

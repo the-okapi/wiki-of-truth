@@ -27,7 +27,7 @@
 
 	function onkeydown(event: KeyboardEvent) {
 		console.log(event);
-		if (event.key === 'Control') {
+		if (event.key === 'Alt') {
 			event.preventDefault();
 			open = !open;
 		}

@@ -14,7 +14,7 @@
 	<p>
 		To start exploring, you can use the search bar in the top right or hit <kbd
 			class="rounded-md border border-gray-200 bg-gray-100 px-1 py-0.5 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100"
-			>Ctrl</kbd
+			>Alt</kbd
 		>. Alternatively, you can read some of the articles below. <Button
 			variant="link"
 			class="p-0 text-teal-500"
